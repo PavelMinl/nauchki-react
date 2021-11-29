@@ -14,7 +14,6 @@ const persistConfig = {
   key: 'root',
   storage,
 }
-
 const rootReducer = combineReducers({
   user: userReducer,
   posts: postsReducer,

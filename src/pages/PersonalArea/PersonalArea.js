@@ -11,7 +11,7 @@ import { ChildCard } from "./ChildCart";
 export const PersonalArea = () => {
   const user = useSelector((state) => state.user.userData);
   const children = useSelector((state) => state.children.children);
-
+console.log(children)
   const [visibleForm, setVisibleForm] = useState(false);
 
   const dispatch = useDispatch();
@@ -80,11 +80,11 @@ export const PersonalArea = () => {
             ))}
           </ul>
 
-          {/* <Route
+          {<Route
                 exact
                 path="/personalArea/:id"
                 render={(props) => <ChildCard {...props} />}
-              /> */}
+              />}
         </div>
       </div>
       <br />
