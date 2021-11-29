@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
+import ChildPost from "../../components/OneChild/OneChild";
 import childPlaceholder from "../../img/childCardPlaceholder.jpg";
+import ButtonChild from "../../UI/ButtonChild";
+import InputChild from "../../UI/InputChild";
 
 function getDate(d) {
   let days = d % 365;
@@ -21,16 +24,20 @@ function getDate(d) {
 export const OneChildrenWithoutRouter = (props) => {
   const children = useSelector((state) => state.children.children);
   const [value, setValue] = useState("");
-  const [phaseValue, setPhaseValue] = useState("");
-  const addNewPhrase = (e) => {
+
+  //Инпут у фразы ребенка
+  const [childrenPhrase, setChildrenPhrase] = useState([]);
+  const [childText, setChildText] = useState("");
+  const AddNewChildPhrase = (e) => {
     e.preventDefault();
-    const newPharese = {
-      phaseValue,
+    const newChildPhrase = {
       id: Date.now(),
+      childText,
     };
-    console.log(newPharese);
+    setChildrenPhrase([...childrenPhrase, newChildPhrase]);
+    setChildText("");
   };
-  console.log(props);
+
   const [dates, setDates] = useState();
   const [filteredChildren, setFilteredChildren] = useState();
   const onChange = ({ target: { value } }) =>
@@ -118,15 +125,19 @@ export const OneChildrenWithoutRouter = (props) => {
 
         <div>
           <form>
-            <input
-              className="oneChildren_laugh"
+            <InputChild
+              value={childText}
+              onChange={(e) => setChildText(e.target.value)}
               type="text"
-              value={phaseValue}
-              onChange={(e) => setPhaseValue(e.target.value)}
+              placeholder="Смешные фразы ребенка"
             />
-            <button onClick={addNewPhrase} className="circle"></button>
+            <ButtonChild onClick={AddNewChildPhrase}></ButtonChild>
           </form>
-          <div></div>
+          <div childrenPhrase={childrenPhrase}>
+            {childrenPhrase.map((childPh, index) => (
+              <ChildPost number={index + 1} post={childPh} key={childPh.id} />
+            ))}
+          </div>
         </div>
       </div>
       <ul>
