@@ -12,6 +12,7 @@ export const ChildCard = ({ child }) => {
         <div className='personalArea_addedChildren-info'>
           <p className='personalArea_addedChildren-name'>{child.name}</p>
           <p className='personalArea_addedChildren-name'>{child.dateOfBirth}</p>
+          
         </div>
         </div>
       </div>

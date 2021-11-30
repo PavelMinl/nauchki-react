@@ -8,7 +8,6 @@ export const Adminka = () => {
   const [title, setTitle] = useState("");
   const [subtitle, setSubtitle] = useState("");
 
-
   const sendFile = useCallback(async () => {
     try {
       const data = new FormData();
@@ -23,8 +22,6 @@ export const Adminka = () => {
       console.log(error);
     }
   }, [text, tag, img, title, subtitle]);
-
- 
 
   return (
     <div className="_wrapper area">
@@ -64,7 +61,6 @@ export const Adminka = () => {
       </form>
 
       <br />
-      
     </div>
   );
 };

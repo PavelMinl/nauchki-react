@@ -13,4 +13,3 @@ export const PostsCardsArea = ({ posts, isLoading }) => {
     </div>
   );
 };
-
