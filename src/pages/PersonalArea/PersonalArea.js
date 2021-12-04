@@ -11,23 +11,18 @@ import { ChildCard } from "./ChildCart";
 export const PersonalArea = () => {
   const user = useSelector((state) => state.user.userData);
   const children = useSelector((state) => state.children.children);
-console.log(children)
   const [visibleForm, setVisibleForm] = useState(false);
-
   const dispatch = useDispatch();
   let history = useHistory();
-
   const exitHandler = () => {
     dispatch(toggleAuthAC(false));
     history.push("/");
   };
 
-
   // TODO: Перенести в санки получение детей
   const getChildrenData = (userData) => {
     dispatch(getChildrenAC(userData));
   };
-
   const getUserChildren = () => {
     axios
       .get(`https://nauchki.herokuapp.com/getchildren/${user.id}`, {
@@ -37,9 +32,10 @@ console.log(children)
         getChildrenData(res.data);
       });
   };
+  console.log(getChildrenData);
 
   useEffect(() => {
-    getUserChildren()
+    getUserChildren();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -58,39 +54,41 @@ console.log(children)
         </div>
         <div className="personalArea__main">
           <h1 className="personalArea__title-children">
-            Мои дети {!visibleForm && (
-        <button
-          onClick={() => setVisibleForm(!visibleForm)}
-          className="circle"
-        ></button>
-      )}
-      {visibleForm && (
-        <AddChildrenForm
-          userId={user.id}
-          visibleForm={visibleForm}
-          setVisibleForm={setVisibleForm}
-          getUserChildren={getUserChildren}
-        />
-      )}
+            Мои дети{" "}
+            {!visibleForm && (
+              <button
+                onClick={() => setVisibleForm(!visibleForm)}
+                className="circle"
+              ></button>
+            )}
+            {visibleForm && (
+              <AddChildrenForm
+                userId={user.id}
+                visibleForm={visibleForm}
+                setVisibleForm={setVisibleForm}
+                getUserChildren={getUserChildren}
+              />
+            )}
           </h1>
 
           <ul className="personalArea__children-container ">
-            {children && children.map((child) => (
-              <ChildCard key={child.id} child={child}/>
-            ))}
+            {children &&
+              children.map((child) => (
+                <ChildCard key={child.id} child={child} />
+              ))}
           </ul>
 
-          {<Route
-                exact
-                path="/personalArea/:id"
-                render={(props) => <ChildCard {...props} />}
-              />}
+          {
+            <Route
+              exact
+              path="/personalArea/:id"
+              render={(props) => <ChildCard {...props} />}
+            />
+          }
         </div>
       </div>
       <br />
       <br />
-      
-      
     </div>
   );
 };
