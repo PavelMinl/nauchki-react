@@ -19,7 +19,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   posts: postsReducer,
   children: childrenReducer,
-  /* phase: childrenInputReducer, */
+  phase: childrenInputReducer,
 });
 
 // оборачиваем редьюсеры в persist

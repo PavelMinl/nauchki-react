@@ -1,4 +1,4 @@
-/* export const GET_PHRASE = "GET_PHRASE";
+export const GET_PHRASE = "GET_PHRASE";
 
 const childrenPh = {
   phase: [],
@@ -17,4 +17,3 @@ export const childrenInputReducer = (state = childrenPh, action) => {
 };
 
 export const getchildrenInputAC = (payload) => ({ type: GET_PHRASE, payload });
- */
