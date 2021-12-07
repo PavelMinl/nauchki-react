@@ -39,14 +39,13 @@ export const AdminAPI = {
   addPost(data) {
     return instance.post(`/post`, data);
   },
-  
 };
 
 export const PostsAPI = {
   getPosts(tag) {
-    return instance.get(`/posts${tag !== undefined ? `/${tag}` : ''}`);
+    return instance.get(`/posts${tag !== undefined ? `/${tag}` : ""}`);
   },
   getTags() {
     return instance.get(`/tags`);
-  }
+  },
 };

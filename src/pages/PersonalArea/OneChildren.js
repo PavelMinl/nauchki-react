@@ -5,6 +5,8 @@ import ChildPost from "../../components/OneChild/OneChild";
 import childPlaceholder from "../../img/childCardPlaceholder.jpg";
 import ButtonChild from "../../UI/ButtonChild";
 import InputChild from "../../UI/InputChild";
+import { useDispatch } from "react-redux";
+import { getchildrenInputAC, GET_PHRASE } from "../../store/OnechildInput";
 
 function getDate(d) {
   let days = d % 365;
@@ -12,7 +14,6 @@ function getDate(d) {
   const weeks = parseInt(days / 7);
   const years = Math.floor(d / 365);
   days -= weeks * 7;
-  console.log(d);
   return {
     years,
     month,
@@ -26,6 +27,9 @@ export const OneChildrenWithoutRouter = (props) => {
   const [value, setValue] = useState("");
 
   //Инпут у фразы ребенка
+  /*   const dispatch = useDispatch();
+  const phase = useSelector((state) => state.phase.phase);
+ */
   const [childrenPhrase, setChildrenPhrase] = useState([]);
   const [childText, setChildText] = useState("");
   const AddNewChildPhrase = (e) => {
@@ -34,10 +38,11 @@ export const OneChildrenWithoutRouter = (props) => {
       id: Date.now(),
       childText,
     };
+    /* dispatch({ type: "GET_PHRASE", payload: e.target.value }); */
     setChildrenPhrase([...childrenPhrase, newChildPhrase]);
     setChildText("");
   };
-
+  // input
   const [dates, setDates] = useState();
   const [filteredChildren, setFilteredChildren] = useState();
   const onChange = ({ target: { value } }) =>
@@ -70,7 +75,7 @@ export const OneChildrenWithoutRouter = (props) => {
                     alt={"childPlaceholder"}
                   />{" "}
                 </div>
-                <div className="oneChild_age"> 1 ГОД</div>
+                <div className="oneChild_age"> ГОД</div>
                 <div className="oneChild_dateOfBirth">
                   Дата рождения: <br />
                   {children.dateOfBirth}{" "}
