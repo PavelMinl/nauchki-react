@@ -8,11 +8,19 @@ export const ChildCard = ({ child }) => {
       <li>
         <div className="personalArea_addedChildren-children">
           <div className="personalArea_addedChildren-wrapper">
-            <img
-              className="childPlaceholder"
-              src={childPlaceholder}
-              alt={"childPlaceholder"}
-            />
+            {child.img_path ? (
+              <img
+                className="childPlaceholder"
+                src={child.img_path}
+                alt={"childPlaceholder"}
+              />
+            ) : (
+              <img
+                className="childPlaceholder"
+                src={childPlaceholder}
+                alt={"childPlaceholder"}
+              />
+            )}
             <div className="personalArea_addedChildren-info">
               <p className="personalArea_addedChildren-name">{child.name}</p>
               <p className="personalArea_addedChildren-name">

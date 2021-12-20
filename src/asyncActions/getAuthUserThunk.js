@@ -4,7 +4,6 @@ import { Redirect } from "react-router";
 
 export const asyncApiCall = (login, password) => {
   return async (dispatch) => {
-      
     await LoginAPI.auth(login, password);
 
     await UserAPI.getAuthUser(login, password)
